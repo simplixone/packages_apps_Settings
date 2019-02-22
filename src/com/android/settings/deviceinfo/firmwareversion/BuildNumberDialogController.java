@@ -38,17 +38,24 @@ public class BuildNumberDialogController {
         mDialog = dialog;
     }
 
+    private String getSimplixOneBuild(){
+        String buildDate = SystemProperties.get("com.simplixone.build_date","");
+        String buildType = SystemProperties.get("com.simplixone.build_type","unofficial").toUpperCase();
+        return buildDate.equals("") ? "" : "SimplixOne-9.0-Explorer-" + buildDate + "-" + buildType;
+    }
+
     /**
      * Updates the build number to the dialog.
      */
     public void initialize() {
         
         StringBuilder sb = new StringBuilder();
-        sb.append(BidiFormatter.getInstance().unicodeWrap(Build.DISPLAY));
-        String pixelExperienceVersion = BuildNumberPreferenceController.getPixelExperienceVersion();
-        if (!pixelExperienceVersion.equals("")){
+        sb.append(BidiFormatter.getInstance().unicodeWrap(
+                TextUtils.isEmpty(Build.VENDOR.BUILD_NUMBER_OVERRIDE) ? Build.DISPLAY : Build.VENDOR.BUILD_NUMBER_OVERRIDE));
+        String simplixOneBuild = getSimplixOneBuild();
+        if (!simplixOneBuild.equals("")){
             sb.append("\n");
-            sb.append(pixelExperienceVersion);
+            sb.append(simplixOneBuild);
         }
         sb.append("\n");
         sb.append(DeviceModelPreferenceController.getDeviceModel());

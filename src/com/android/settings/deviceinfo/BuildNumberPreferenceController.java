@@ -86,11 +86,12 @@ public class BuildNumberPreferenceController extends AbstractPreferenceControlle
         if (preference != null) {
             try {
                 StringBuilder sb = new StringBuilder();
-                sb.append(BidiFormatter.getInstance().unicodeWrap(Build.DISPLAY));
-                String pixelExperienceVersion = getPixelExperienceVersion();
-                if (!pixelExperienceVersion.equals("")){
+                sb.append(BidiFormatter.getInstance().unicodeWrap(
+                        TextUtils.isEmpty(Build.VENDOR.BUILD_NUMBER_OVERRIDE) ? Build.DISPLAY : Build.VENDOR.BUILD_NUMBER_OVERRIDE));
+                String simplixOneBuild = getSimplixOneBuild();
+                if (!simplixOneBuild.equals("")){
                     sb.append("\n");
-                    sb.append(pixelExperienceVersion);
+                    sb.append(simplixOneBuild);
                 }
                 preference.setSummary(sb.toString());
                 preference.setEnabled(true);
@@ -100,10 +101,10 @@ public class BuildNumberPreferenceController extends AbstractPreferenceControlle
         }
     }
 
-    public static String getPixelExperienceVersion(){
-        String buildDate = SystemProperties.get("org.pixelexperience.build_date","");
-        String buildType = SystemProperties.get("org.pixelexperience.build_type","unofficial").toUpperCase();
-        return buildDate.equals("") ? "" : "PixelExperience-" + buildDate + "-" + buildType;
+    private String getSimplixOneBuild(){
+        String buildDate = SystemProperties.get("com.simplixone.build_date","");
+        String buildType = SystemProperties.get("com.simplixone.build_type","unofficial").toUpperCase();
+        return buildDate.equals("") ? "" : "SimplixOne-9.0-Essential-" + buildDate + "-" + buildType;
     }
 
     @Override
