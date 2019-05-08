@@ -168,5 +168,8 @@ public class Settings extends SettingsActivity {
 
     // Ambient play
     public static class AmbientPlayHistoryActivity extends SettingsActivity { /* empty */ }
+    
+    // SimplixOne Tweaks
+    public static class OneTweaksActivity extends SettingsActivity { /* empty */ }
 
 }
