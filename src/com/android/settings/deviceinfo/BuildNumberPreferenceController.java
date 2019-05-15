@@ -104,7 +104,7 @@ public class BuildNumberPreferenceController extends AbstractPreferenceControlle
     private String getSimplixOneBuild(){
         String buildDate = SystemProperties.get("com.simplixone.build_date","");
         String buildType = SystemProperties.get("com.simplixone.build_type","unofficial").toUpperCase();
-        return buildDate.equals("") ? "" : "SimplixOne-9.0-Essential-" + buildDate + "-" + buildType;
+        return buildDate.equals("") ? "" : "SimplixOne-9.0-Explorer-" + buildDate + "-" + buildType;
     }
 
     @Override

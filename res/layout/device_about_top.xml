@@ -31,7 +31,7 @@
         android:includeFontPadding="false"
         android:paddingTop="212px"
         android:paddingLeft="684px"
-        android:text="Essential"
+        android:text="Explorer"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="42px"
         android:textAlignment="center" />

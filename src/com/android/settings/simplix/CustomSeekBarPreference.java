@@ -150,6 +150,8 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
         view.setDividerAllowedAbove(false);
         //view.setDividerAllowedBelow(false);
+
+        mSeekBar.setEnabled(isEnabled());
     }
 
     public void setMax(int max) {
@@ -234,7 +236,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         if (mDefaultValue > mMax) {
             mDefaultValue = mMax;
         }
-        if (mCurrentValue == mDefaultValue) {
+        if (mCurrentValue == mDefaultValue && mStatusText != null) {
             mStatusText.setText(mDefaultText);
         }
     }
